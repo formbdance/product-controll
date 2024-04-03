@@ -4,6 +4,7 @@ import { Copy } from "./UI/Copy";
 import { Delete } from "./UI/Delete";
 import { Edit } from "./UI/Edit";
 
+// Сущность продукта
 export const Product = (props) => {
   const date = {
     disabled: props.disabled,
@@ -15,6 +16,7 @@ export const Product = (props) => {
 
   const [handleMenu, StateHandleMenu] = useState(false);
 
+  // всплывающее меню продукта если сроки впорядке
   const handleClick = (e) => {
     if (props.disabled) {
       return;

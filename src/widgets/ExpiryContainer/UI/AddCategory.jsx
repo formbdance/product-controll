@@ -2,19 +2,25 @@
 import { ModalCategory } from "@/features/ModalCategory";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { productsElevate } from "@/shared/slices/modalview";
+import { categoriesElevate } from "@/shared/slices/modalview";
 
 // Переключение состояния модального окна с созданием категории
-export const AddProduct = () => {
+export const AddCategory = () => {
   const dispatch = useDispatch();
 
   const handleModal = () => {
-    dispatch(productsElevate());
+    dispatch(categoriesElevate());
   };
 
   return (
-    <button onClick={handleModal} className="w-fit">
-      +
-    </button>
+    <div>
+      <ModalCategory />
+      <button
+        onClick={handleModal}
+        className="text-xl font-semibold cursor-pointer"
+      >
+        Add Category
+      </button>
+    </div>
   );
 };

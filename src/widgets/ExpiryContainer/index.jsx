@@ -1,4 +1,5 @@
 import { ProductCell } from "@/features/ProductCell";
+import { AddCategory } from "./UI/AddCategory";
 
 export const ExpiryContainer = () => {
   return (
@@ -9,7 +10,7 @@ export const ExpiryContainer = () => {
         <p className="w-4 h-4 bg-green-600 opacity-60 font-bold text-white rounded-full flex items-center justify-center">
           +
         </p>
-        <h4 className="text-xl font-semibold cursor-pointer">Add Category</h4>
+        <AddCategory />
       </div>
     </section>
   );
