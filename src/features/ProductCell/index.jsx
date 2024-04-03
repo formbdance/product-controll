@@ -3,12 +3,12 @@ import { AddProduct } from "./UI/AddProduct";
 import { ModalProduct } from "../ModalProduct";
 
 // Ячейка (категория) продукта
-export const ProductCell = () => {
+export const ProductCell = (props) => {
   return (
     <div className="flex flex-col gap-2">
       <ModalProduct />
       <div className="">
-        <h4 className="text-xl font-semibold">Шкаф:</h4>
+        <h4 className="text-xl font-semibold">{props.title}:</h4>
       </div>
       <div className="flex flex-col gap-2 px-1">
         <Product

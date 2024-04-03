@@ -3,8 +3,38 @@ import axios from "axios";
 
 const api_url = 'http://localhost:5000/api';
 
+export async function createClient(options) {
+    const res = await axios.post(`${api_url}/client`, options.data, 
+    {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    },
+    )
+    if (res.status !== 200) {
+        throw new Error('Ошибка при добавление клиента!')
+    }
+    
+    return res.data
+}
+
+export async function deleteClient() {
+    const res = await axios.delete(`${api_url}/client`, 
+    {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    },
+    )
+    if (res.status !== 200) {
+        throw new Error('Ошибка при удалении клиента!')
+    }
+    
+    return res.data
+}
+
 export async function saveCategory(options) {
-    const res = await axios.post(`${api_url}/categories/${options.uuid}`, options.data, 
+    const res = await axios.post(`${api_url}/client/categories`, options.data, 
     {
         headers: {
             'Content-Type': 'application/json'
@@ -18,8 +48,8 @@ export async function saveCategory(options) {
     return res.data
 }
 
-export async function getCategories(options) {
-    const res = await axios.get(`${api_url}/api/categories/${options.uuid}`)
+export async function getClient(options) {
+    const res = await axios.get(`${api_url}/client/${options.uuid}`)
     if (res.status !== 200) {
         throw new Error('Ошибка при получении данных!')
     }
