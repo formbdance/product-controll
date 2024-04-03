@@ -2,10 +2,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { productsElevate } from "@/shared/slices/modalview";
 import { useEffect, useState } from "react";
+import { saveProduct } from "@/shared/slices/products";
 
 export const ModalProduct = (props) => {
   const dispatch = useDispatch();
+
   const modalState = useSelector((state) => state.modalStates);
+  const clientState = useSelector((state) => state.clientState);
+  const categoriesState = useSelector((state) => state.categoriesState);
 
   const [formData, stateFormData] = useState({
     title: "",
@@ -13,6 +17,7 @@ export const ModalProduct = (props) => {
     dateBe: "",
     quantity: 0,
     gramm: "",
+    category: "",
   });
 
   const clearFormData = () => {
@@ -22,6 +27,7 @@ export const ModalProduct = (props) => {
       dateBe: "",
       quantity: 0,
       gramm: "",
+      category: "",
     });
   };
 
@@ -35,6 +41,9 @@ export const ModalProduct = (props) => {
 
   const handleSumbit = (e) => {
     e.preventDefault();
+    dispatch(
+      saveProduct({ data: { product: formData, category: formData.category } })
+    );
     clearFormData();
     handleModal();
   };
@@ -61,7 +70,6 @@ export const ModalProduct = (props) => {
               stateFormData({ ...formData, title: e.target.value })
             }
             value={formData.title}
-            onClick={() => console.log(formData)}
             className="font-light w-full border rounded-md px-2 py-1 outline-none"
             placeholder="Название продукта"
           />
@@ -107,6 +115,24 @@ export const ModalProduct = (props) => {
               <option value={"п"}>П.</option>
             </select>
           </div>
+          <select
+            onChange={(e) =>
+              stateFormData({ ...formData, category: e.target.value })
+            }
+            value={formData.category}
+            className="font-light w-full border rounded-md px-2 py-1 outline-none"
+          >
+            <option value={null}>Категория продукта</option>
+            {!Array.isArray(clientState.clientCategories)
+              ? console.log("not is array")
+              : clientState.clientCategories.map((item, index) => {
+                  return (
+                    <option key={index} value={item.title}>
+                      {item.title}
+                    </option>
+                  );
+                })}
+          </select>
         </div>
 
         <div className="border-t flex justify-end pt-1">

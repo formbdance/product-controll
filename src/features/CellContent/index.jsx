@@ -18,7 +18,13 @@ export const CellContent = () => {
       {!Array.isArray(clientState.clientCategories)
         ? console.log("not is array")
         : clientState.clientCategories.map((item, index) => {
-            return <ProductCell title={item.title} key={index} />;
+            return (
+              <ProductCell
+                title={item.title}
+                products={item.products}
+                key={index}
+              />
+            );
           })}
     </>
   );

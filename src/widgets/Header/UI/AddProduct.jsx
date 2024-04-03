@@ -1,6 +1,4 @@
 "use client";
-import { ModalCategory } from "@/features/ModalCategory";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { productsElevate } from "@/shared/slices/modalview";
 
@@ -13,7 +11,7 @@ export const AddProduct = () => {
   };
 
   return (
-    <button onClick={handleModal} className="w-fit">
+    <button onClick={handleModal} className=" bg-blue-100 w-6 h-6 rounded-full">
       +
     </button>
   );

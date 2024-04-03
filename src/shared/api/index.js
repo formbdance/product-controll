@@ -48,12 +48,27 @@ export async function saveCategory(options) {
     return res.data
 }
 
+// сохраняем продукт
+export async function saveProduct(options) {
+    const res = await axios.post(`${api_url}/client/categories/product`, options.data, 
+    {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    },
+    )
+    if (res.status !== 200) {
+        throw new Error('Ошибка при добавление категории!')
+    }
+    
+    return res.data
+}
+
 export async function getClient(options) {
     const res = await axios.get(`${api_url}/client/${options.uuid}`)
     if (res.status !== 200) {
         throw new Error('Ошибка при получении данных!')
     }
-    
     return res.data
 }
 
