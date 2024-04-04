@@ -7,11 +7,17 @@ import { useEffect } from "react";
 export const CellContent = () => {
   const dispatch = useDispatch();
   const clientState = useSelector((state) => state.clientState);
+  const productState = useSelector((state) => state.productsState);
   const categoriesState = useSelector((state) => state.categoriesState);
 
   useEffect(() => {
     dispatch(getClient({ uuid: "admin" }));
-  }, [dispatch, categoriesState.categoryStatus]);
+  }, [
+    dispatch,
+    categoriesState.categoryStatus,
+    productState.productCreated,
+    productState.productDeleted,
+  ]);
 
   return (
     <>

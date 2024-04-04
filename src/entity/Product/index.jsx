@@ -6,19 +6,22 @@ import { Edit } from "./UI/Edit";
 
 // Сущность продукта
 export const Product = (props) => {
-  const date = {
-    disabled: props.disabled,
-    title: props.title,
-    todate: props.todate,
-    bedate: props.bedate,
-    quantity: props.quantity,
+  const data = {
+    disabled: props.product.disabled,
+    formalId: props.product.formalId,
+    title: props.product.title,
+    dateTo: props.product.dateTo,
+    dateBe: props.product.dateBe,
+    quantity: props.product.quantity,
+    category: props.product.category,
+    gramm: props.product.gramm,
   };
 
   const [handleMenu, StateHandleMenu] = useState(false);
 
   // всплывающее меню продукта если сроки впорядке
   const handleClick = (e) => {
-    if (props.disabled) {
+    if (data.disabled) {
       return;
     }
     StateHandleMenu(!handleMenu);
@@ -27,7 +30,7 @@ export const Product = (props) => {
   return (
     <div
       className={`${
-        date.disabled ? "bg-red-200" : "bg-transparent"
+        data.disabled ? "bg-red-200" : "bg-transparent"
       } shadow-md px-2 py-1 rounded-lg relative overflow-hidden `}
     >
       <div
@@ -37,23 +40,25 @@ export const Product = (props) => {
       >
         <Edit />
         <Copy />
-        <Delete />
+        <Delete formalId={data.formalId} category={data.category} />
       </div>
       <div
         className={`${
-          date.disabled ? "opacity-50" : "opacity-100"
+          data.disabled ? "opacity-50" : "opacity-100"
         } flex justify-between `}
         onClick={handleClick}
       >
         <span className="flex gap-2 items-center ">
           <span className="flex text-sm flex-col">
-            <span>{date.title}</span>
+            <span>{data.title}</span>
             <span className="text-xs">
-              {date.todate} - {date.bedate}
+              {data.dateTo} - {data.dateBe}
             </span>{" "}
           </span>
         </span>
-        <span className="text-sm">{date.quantity} п</span>
+        <span className="text-sm">
+          {data.quantity} {data.gramm}
+        </span>
       </div>
     </div>
   );

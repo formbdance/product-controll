@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { productsElevate } from "@/shared/slices/modalview";
 import { useEffect, useState } from "react";
 import { saveProduct } from "@/shared/slices/products";
+import { nanoid } from "nanoid";
 
 export const ModalProduct = (props) => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export const ModalProduct = (props) => {
   const categoriesState = useSelector((state) => state.categoriesState);
 
   const [formData, stateFormData] = useState({
+    formalId: null,
     title: "",
     dateTo: "",
     dateBe: "",
@@ -22,12 +24,13 @@ export const ModalProduct = (props) => {
 
   const clearFormData = () => {
     stateFormData({
+      formalId: nanoid(),
       title: "",
       dateTo: "",
       dateBe: "",
       quantity: 0,
       gramm: "",
-      category: "",
+      category: props.category,
     });
   };
 
@@ -62,7 +65,9 @@ export const ModalProduct = (props) => {
         onSubmit={handleSumbit}
         className="bg-white text-xs rounded-xl fixed px-3 py-2 text-sm w-5/6 flex flex-col gap-4"
       >
-        <p className="border-b">Создание нового продукта</p>
+        <p className="border-b text-base font-semibold py-1">
+          Создание нового продукта
+        </p>
 
         <div className="flex flex-col gap-2">
           <input

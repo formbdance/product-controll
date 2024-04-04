@@ -6,7 +6,7 @@ export const Avatar = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="hidden">
       <button
         onClick={() =>
           dispatch(createClient({ data: { uuid: "admin", categories: [] } }))

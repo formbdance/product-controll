@@ -33,7 +33,9 @@ export const ModalCategory = (props) => {
         onSubmit={handleSubmit}
         className="bg-white text-xs rounded-xl fixed px-3 py-2 text-sm w-5/6 flex flex-col gap-4"
       >
-        <p className="border-b">Создание новой категории</p>
+        <p className="border-b text-base font-semibold py-1">
+          Создание новой категории
+        </p>
 
         <div className="">
           <input

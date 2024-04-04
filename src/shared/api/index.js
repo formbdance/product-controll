@@ -64,6 +64,22 @@ export async function saveProduct(options) {
     return res.data
 }
 
+// удаляем продукт
+export async function deleteProduct(options) {
+    const res = await axios.delete(`${api_url}/client/categories/product/${options.data.category}/${options.data.formalId}`, 
+    {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    },
+    )
+    if (res.status !== 200) {
+        throw new Error('Ошибка при добавление категории!')
+    }
+    
+    return res.data
+}
+
 export async function getClient(options) {
     const res = await axios.get(`${api_url}/client/${options.uuid}`)
     if (res.status !== 200) {
